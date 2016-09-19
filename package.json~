@@ -8,6 +8,9 @@
     "mongoose": "^4.6.0"
   },
   "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pabSec/mongoDB_seeder.git"
