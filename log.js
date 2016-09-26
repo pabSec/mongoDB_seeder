@@ -40,7 +40,7 @@ for (var i=0; i<5000; i++){
 	var logEntry = {
 		host: ips[Math.floor(Math.random() * (ips.length))],
 		user: users[Math.floor(Math.random() * (users.length))],
-		time: new Date(new Date().getTime() + i*10),
+		time: new Date(new Date().getTime() + i*15000000),
 		path: pages[Math.floor(Math.random() * (pages.length))],
 		request: requests[Math.floor(Math.random() * (requests.length))],
 		status: status[Math.floor(Math.random() * (status.length))],
@@ -52,6 +52,9 @@ for (var i=0; i<5000; i++){
 
 log.create(logEntries, function(err, logEntries){
 	if(err) console.log(err);
-	else console.log('Done!');
+	else {
+		console.log('Done!');
+		process.exit();
+	}
 });
 
