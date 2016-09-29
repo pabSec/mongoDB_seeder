@@ -1,9 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var faker = require('faker');
-mongoose.connect('172.17.0.2/users');
-
-//var User = mongoose.model('User', {name: String, avatar: String, trabajo:String, area:String});
+mongoose.connect('172.17.0.2/companyCars');
 
 var userSchema = new Schema({},{strict: false});
 var User = mongoose.model('User', userSchema);
@@ -15,7 +13,7 @@ var marcas = ['Audi', 'BMW', 'Ferrari'];
 
 
 var coches = [];
-for (var i=0; i<10; i++){
+for (var i=0; i<100; i++){
 	var coche = {
 		matricula: Math.floor(Math.random() * (9999)),
 		marca: marcas[Math.floor(Math.random() * (marcas.length))],
@@ -26,9 +24,15 @@ for (var i=0; i<10; i++){
 
 Car.create(coches, function(err, coches){
 	if(err) console.log(err);
-	else{
+	else{		
 		var personas = [];
 		for (var i=0; i<500; i++){
+
+			var car = [];
+		        for(var j=0;j<(Math.floor(Math.random() * (5-1)+1));j++){
+        		        car.push(coches[Math.floor(Math.random() * (100))]._id)
+       			}
+
 		        var persona = {
 		                name: faker.name.findName(),
 		                avatar: faker.image.avatar(),
@@ -38,13 +42,12 @@ Car.create(coches, function(err, coches){
 		                phone: faker.phone.phoneNumber(),
 		                email: faker.internet.email(),
 		                company: faker.company.companyName(),
-				car: coches[Math.floor(Math.random() * (coches.length))]._id
+				car: car
 		        
 			}
 		        personas.push(persona);
+			console.log(i);
 		}
-
-
 		User.create(personas, function(err, personas){
 			if(err) {console.log(err);}
 			else {
